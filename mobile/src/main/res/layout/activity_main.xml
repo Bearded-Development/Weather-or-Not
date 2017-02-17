@@ -1,13 +1,327 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:padding="8dp"
     tools:context="com.beardeddevelopment.weatherornot.MainActivity">
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/preview_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            tools:text="Roseville, CA" />
+
+        <TextView
+            android:id="@+id/preview_alert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            tools:text="ALERT" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/preview_icon_big"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:src="@drawable/big_icon_placeholder" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/preview_temperature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            tools:text="Temperature" />
+
+        <TextView
+            android:id="@+id/preview_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            tools:text="Humidity: 50%" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/preview_forecast_day_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="12dp"
+                android:textAlignment="center"
+                tools:text="Mon" />
+
+            <ImageView
+                android:id="@+id/preview_forecast_icon_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:src="@drawable/icon_placeholder" />
+
+            <TextView
+                android:id="@+id/preview_forecast_temps_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="99\u00b0F / 10\u00b0F" />
+
+            <TextView
+                android:id="@+id/preview_forecast_chance_rain_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="50%" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/preview_forecast_day_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="12dp"
+                android:textAlignment="center"
+                tools:text="Mon" />
+
+            <ImageView
+                android:id="@+id/preview_forecast_icon_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:src="@drawable/icon_placeholder" />
+
+            <TextView
+                android:id="@+id/preview_forecast_temps_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="99\u00b0F / 10\u00b0F" />
+
+            <TextView
+                android:id="@+id/preview_forecast_chance_rain_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="50%" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/preview_forecast_day_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="12dp"
+                android:textAlignment="center"
+                tools:text="Mon" />
+
+            <ImageView
+                android:id="@+id/preview_forecast_icon_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:src="@drawable/icon_placeholder" />
+
+            <TextView
+                android:id="@+id/preview_forecast_temps_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="99\u00b0F / 10\u00b0F" />
+
+            <TextView
+                android:id="@+id/preview_forecast_chance_rain_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="50%" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/preview_forecast_day_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="12dp"
+                android:textAlignment="center"
+                tools:text="Mon" />
+
+            <ImageView
+                android:id="@+id/preview_forecast_icon_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:src="@drawable/icon_placeholder" />
+
+            <TextView
+                android:id="@+id/preview_forecast_temps_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="99\u00b0F / 10\u00b0F" />
+
+            <TextView
+                android:id="@+id/preview_forecast_chance_rain_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="50%" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/preview_forecast_day_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="12dp"
+                android:textAlignment="center"
+                tools:text="Mon" />
+
+            <ImageView
+                android:id="@+id/preview_forecast_icon_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:src="@drawable/icon_placeholder" />
+
+            <TextView
+                android:id="@+id/preview_forecast_temps_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="99\u00b0F / 10\u00b0F" />
+
+            <TextView
+                android:id="@+id/preview_forecast_chance_rain_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="50%" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/preview_forecast_day_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="12dp"
+                android:textAlignment="center"
+                tools:text="Mon" />
+
+            <ImageView
+                android:id="@+id/preview_forecast_icon_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:src="@drawable/icon_placeholder" />
+
+            <TextView
+                android:id="@+id/preview_forecast_temps_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="99\u00b0F / 10\u00b0F" />
+
+            <TextView
+                android:id="@+id/preview_forecast_chance_rain_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="6dp"
+                tools:text="50%" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
