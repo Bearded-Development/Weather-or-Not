@@ -50,11 +50,11 @@
             tools:text="Temperature" />
 
         <TextView
-            android:id="@+id/preview_humidity"
+            android:id="@+id/preview_conditions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            tools:text="Humidity: 50%" />
+            tools:text="Sunny" />
 
     </LinearLayout>
 
