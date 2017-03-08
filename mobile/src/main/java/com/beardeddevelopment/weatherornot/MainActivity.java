@@ -1,15 +1,7 @@
 package com.beardeddevelopment.weatherornot;
 
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -23,7 +15,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.net.MalformedURLException;
 
 public class MainActivity extends AppCompatActivity {
-    Model m;
+    Model model;
     private final int PREVIEWFORECASTLENGTH = 6;
     // Conditions preview elements
     TextView previewConditions, previewTemps, previewLocation;
@@ -31,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     // Forecast preview elements
     TextView[] previewForecastDay, previewForecastTemps, previewForecastPrecip;
     ImageView[] previewForecastIcons;
+    boolean tempF = true;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -97,18 +90,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Model doInBackground(String... strings) {
-            Model result;
             try {
-                result = new Model();
-                return result;
+                model = new Model();
+                return model;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
             return null;
         }
-        protected void onPostExecute(Model result) {
-            if (result != null) {
-                refreshPreview(result);
+
+        protected void onPostExecute(Model model) {
+            if (model != null) {
+                refreshPreview(model);
             }
         }
     }
@@ -119,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
         previewTemps.setText(m.getConditionsTempString());
         for (int i = 0; i < 6; i++) {
             previewForecastDay[i].setText(m.getDailyForecastWeekdayShort()[i]);
+            previewForecastPrecip[i].setText(m.getDailyForecastPOP()[i]);
+            if (tempF) {
+                previewForecastTemps[i].setText(m.getDailyForecastHighTempF()[i] + "/" + m.getDailyForecastLowTempF()[i]);
+            } else if (!tempF) {
+                previewForecastTemps[i].setText(m.getDailyForecastHighTempC()[i] + "/" + m.getDailyForecastLowTempC()[i]);
+            }
         }
     }
 
