@@ -4,6 +4,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     Model model;
     private final int PREVIEWFORECASTLENGTH = 6;
     // Conditions preview elements
-    TextView previewConditions, previewTemps, previewLocation;
+    EditText previewLocation;
+    Button goButton;
+    TextView previewConditions, previewTemps;
     ImageView previewIcon;
     // Forecast preview elements
     TextView[] previewForecastDay, previewForecastTemps, previewForecastPrecip;
@@ -40,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
+        goButton = (Button) findViewById(R.id.goButton);
+
+
         previewForecastDay = new TextView[PREVIEWFORECASTLENGTH];
         previewForecastTemps = new TextView[PREVIEWFORECASTLENGTH];
         previewForecastPrecip = new TextView[PREVIEWFORECASTLENGTH];
@@ -47,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         previewConditions = (TextView) findViewById(R.id.preview_conditions);
         previewTemps = (TextView) findViewById(R.id.preview_temperature);
-        previewLocation = (TextView) findViewById(R.id.preview_location);
+        previewLocation = (EditText) findViewById(R.id.preview_location);
+        previewLocation.setText("autoip");
         previewIcon = (ImageView) findViewById(R.id.preview_icon_big);
 
         previewForecastDay[0] = (TextView) findViewById(R.id.preview_forecast_day_0);
@@ -81,17 +90,32 @@ public class MainActivity extends AppCompatActivity {
         previewForecastIcons[5] = (ImageView) findViewById(R.id.preview_forecast_icon_5);
 
 
-        ModelAsyncTask modelAsyncTask = new ModelAsyncTask();
-        modelAsyncTask.execute("95747");
+        getWeather();
+        goButton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View view) {
+                getWeather();
+            }
+        });
     }
+
+    private void getWeather() {
+        ModelAsyncTask modelAsyncTask = new ModelAsyncTask();
+        modelAsyncTask.execute(previewLocation.getText().toString());
+    }
+
 
     private class ModelAsyncTask extends AsyncTask<String, Void, Model> {
 
         @Override
         protected Model doInBackground(String... strings) {
             try {
-                model = new Model();
+                if (strings[0] != "") {
+                    model = new Model(strings[0]);
+                } else {
+                    model = new Model();
+                }
                 return model;
             } catch (MalformedURLException e) {
                 e.printStackTrace();

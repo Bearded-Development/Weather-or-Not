@@ -21,6 +21,7 @@ import java.nio.charset.Charset;
  * Project: bitplease
  */
 class Model {
+    private String APIKEY = "ca5d16f47e75bf44";
     private final int DAILYFORECASTLENGTH = 10;
     private final String ERROR100 = "ERROR: 100"; // Error code if conditions information is not found in json
     private final String ERROR101 = "ERROR: 101"; // Error code if Daily Forecast information is not found in json
@@ -32,8 +33,24 @@ class Model {
     private static final String LOG_TAG = Model.class.getSimpleName();
 
     Model() throws MalformedURLException {
-        String APIKEY = "ca5d16f47e75bf44";
         URL url = new URL("http://api.wunderground.com/api/" + APIKEY + "/conditions/forecast10day/hourly10day/q/autoip.json");
+        JsonParser j = new JsonParser();
+        jse = j.parse(makeHttpRequest(url)).getAsJsonObject();
+    }
+
+    /**
+     *
+     * @param input takes "city, state", "city, country", US zipcode, airport code
+     * @throws MalformedURLException
+     */
+    Model(String input) throws MalformedURLException {
+        String processedInput;
+        if (input.contains(",")) {
+            processedInput = input.substring(input.indexOf(',') + 2) + "/" + input.substring(0, input.indexOf(',') - 1);
+        } else {
+            processedInput = input;
+        }
+        URL url = new URL("http://api.wunderground.com/api/" + APIKEY + "/conditions/forecast10day/hourly10day/q/" + processedInput + ".json");
         JsonParser j = new JsonParser();
         jse = j.parse(makeHttpRequest(url)).getAsJsonObject();
     }

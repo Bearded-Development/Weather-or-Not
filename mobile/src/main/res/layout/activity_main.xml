@@ -12,13 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/preview_location"
-            android:layout_width="0dp"
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/preview_location"
             android:layout_weight="1"
-            android:textSize="24sp"
-            tools:text="Roseville, CA" />
+            android:hint="Location"
+            tools:text="autoip" />
+
+        <Button
+            android:text="Go"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/goButton"
+            android:padding="0dp" />
 
         <TextView
             android:id="@+id/preview_alert"
